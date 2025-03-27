@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class Wishlist {
     private String wishlistName;
     private int price;
+    private String wishlistDesc;
     private ArrayList<Wish> wishlist;
     private Wish wish;
 
-    public Wishlist(Wish wish, ArrayList<Wish> wishlist, int price, String name) {
+    public Wishlist(Wish wish, ArrayList<Wish> wishlist, int price, String wishlistDesc, String name) {
         this.wish = wish;
         this.wishlist = wishlist;
         this.price = price;
+        this.wishlistDesc = wishlistDesc;
         this.wishlistName = name;
     }
 
@@ -45,5 +47,13 @@ public class Wishlist {
 
     public void setWishlistName(String wishlistName) {
         this.wishlistName = wishlistName;
+    }
+
+    public String getWishlistDesc() {
+        return wishlistDesc;
+    }
+
+    public void setWishlistDesc(String wishlistDesc) {
+        this.wishlistDesc = wishlistDesc;
     }
 }
