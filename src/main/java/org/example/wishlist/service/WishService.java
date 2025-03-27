@@ -1,4 +1,4 @@
 package org.example.wishlist.service;
 
-public class wishService {
+public class WishService {
 }
