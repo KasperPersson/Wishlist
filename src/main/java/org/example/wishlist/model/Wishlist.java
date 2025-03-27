@@ -3,7 +3,7 @@ package org.example.wishlist.model;
 import java.util.ArrayList;
 
 public class Wishlist {
-    private String name;
+    private String wishlistName;
     private int price;
     private ArrayList<Wish> wishlist;
     private Wish wish;
@@ -12,7 +12,7 @@ public class Wishlist {
         this.wish = wish;
         this.wishlist = wishlist;
         this.price = price;
-        this.name = name;
+        this.wishlistName = name;
     }
 
     public Wish getWish() {
@@ -39,11 +39,11 @@ public class Wishlist {
         this.price = price;
     }
 
-    public String getName() {
-        return name;
+    public String getWishlistName() {
+        return wishlistName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWishlistName(String wishlistName) {
+        this.wishlistName = wishlistName;
     }
 }

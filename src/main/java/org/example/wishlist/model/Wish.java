@@ -2,20 +2,20 @@ package org.example.wishlist.model;
 
 public class Wish {
 
-    private String name;
+    private String wishName;
     private String description;
     private int price;
     private String link;
 
     public Wish(String name, String description, int price, String link) {
-        this.name = name;
+        this.wishName = name;
         this.description = description;
         this.price = price;
         this.link = link;
     }
 
-    public String getName() {
-        return name;
+    public String getWishName() {
+        return wishName;
     }
 
     public String getDescription() {
@@ -30,8 +30,8 @@ public class Wish {
         return link;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWishName(String wishName) {
+        this.wishName = wishName;
     }
 
     public void setDescription(String description) {
