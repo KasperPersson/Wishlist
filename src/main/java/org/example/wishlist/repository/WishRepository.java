@@ -2,6 +2,7 @@ package org.example.wishlist.repository;
 
 import org.example.wishlist.model.Wish;
 import org.example.wishlist.model.Wishlist;
+import org.example.wishlist.model.User;
 import org.example.wishlist.model.WishListRowMapper;
 import org.example.wishlist.model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +15,7 @@ import java.util.List;
 public class WishRepository {
     private final JdbcTemplate jdbcTemplate;
 
-    //TODO TEST TIL LOCALHOST
+
     public WishRepository() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource(
                 System.getenv("DB_URL"),
@@ -45,8 +46,9 @@ public class WishRepository {
         jdbcTemplate.update(sql, wishlistId, wish.getWishName(), wish.getDescription(), wish.getLink(), wish.getPrice());
     }
 
-    public void addWishlist(Wishlist wishlist) {
-
+    public void addWishlist(Wishlist wishlist, int userID) {
+        String sql = "INSERT INTO WISHLIST (USER_ID, NAME, DESCRIPTION) VALUES (?,?,?)";
+        jdbcTemplate.update(sql, userID, wishlist.getWishlistName(), wishlist.getWishlistDesc());
     }
 
     public String deleteWish(int wishID) {
