@@ -8,23 +8,13 @@ public class Wishlist {
     private int price;
     private String wishlistDesc;
     private ArrayList<Wish> wishlist;
-    private Wish wish;
 
-    public Wishlist(Wish wish, int wishlistID, ArrayList<Wish> wishlist, int price, String wishlistDesc, String name) {
-        this.wish = wish;
+    public Wishlist(int wishlistID, ArrayList<Wish> wishlist, int price, String wishlistDesc, String name) {
         this.wishlistID = wishlistID;
         this.wishlist = wishlist;
         this.price = price;
         this.wishlistDesc = wishlistDesc;
         this.wishlistName = name;
-    }
-
-    public Wish getWish() {
-        return wish;
-    }
-
-    public void setWish(Wish wish) {
-        this.wish = wish;
     }
 
     public ArrayList<Wish> getWishlist() {
