@@ -43,7 +43,7 @@ public class WishRepository {
     public void addWish(Wish wish, int wishlistId) {
         String sql = "INSERT INTO WISH (WISHLIST_ID, NAME, DESCRIPTION, LINK, PRIS) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, wishlistId, wish.getWishName(), wish.getDescription(), wish.getLink(), wish.getPrice());
-    }
+    } //TODO SKAL RYKKES TIL WISHLIST WISHLIST
 
     public void addWishlist(Wishlist wishlist) {
 
