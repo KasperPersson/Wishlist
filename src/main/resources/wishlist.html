@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ønskelister</title>
+    <style>
+        .wishlist { border: 1px solid black; padding: 10px; margin-bottom: 10px; }
+        .wish { margin-left: 20px; }
+    </style>
+</head>
+<body>
+<h1>Mine Ønskelister</h1>
+
+<div th:each="wishlist : ${wishLists}" class="wishlist">
+    <h2 th:text="${wishlist.wishlistName}"></h2>
+    <p th:text="${wishlist.wishlistDesc}"></p>
+    <p><strong>Total pris:</strong> <span th:text="${wishlist.price}"></span> kr.</p>
+
+    <h3>Ønsker:</h3>
+    <ul>
+        <li th:each="wish : ${wishlist.wishlist}">
+            <span class="wish"><strong th:text="${wish.wishName}"></strong> - <span th:text="${wish.price}"></span> kr.</span>
+            <a th:href="${wish.link}" target="_blank">Link</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
