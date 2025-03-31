@@ -2,17 +2,27 @@ package org.example.wishlist.model;
 
 public class User {
 
+    private int userID;
     private String name;
     private String mail;
     private String username;
     private String password;
 
 
-    public User(String name, String mail, String username, String password) {
+    public User(int userID, String name, String mail, String username, String password) {
+        this.userID = userID;
         this.name = name;
         this.mail = mail;
         this.username = username;
         this.password = password;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getName() {
