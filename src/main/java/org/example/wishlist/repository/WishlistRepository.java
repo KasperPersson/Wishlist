@@ -28,7 +28,7 @@ public class WishlistRepository {
 
 
     public List<Wishlist> getAllWishList() {
-        String sql = "SELECT name, description FROM wishlist";
+        String sql = "SELECT WISHLIST_ID, NAME, DESCRIPTION FROM wishlist";
         return jdbcTemplate.query(sql, new WishListRowMapper());
     }
 
