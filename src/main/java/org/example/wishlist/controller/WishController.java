@@ -23,6 +23,11 @@ public class WishController {
     }
 
     @GetMapping("")
+    public String index(){
+    return "index";
+    }
+
+    @GetMapping("/wishlists")
     public String getAllWishLists(Model model) {
         List<Wishlist> wishLists = wishService.getAllWishLists();
         model.addAttribute("wishLists", wishLists);

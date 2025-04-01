@@ -1,0 +1,51 @@
+section img{
+    grid-area: main;
+    grid-column: 1;
+    justify-self: left;
+}
+
+.text-container {
+    grid-column: 2;
+    gap: revert;
+}
+
+.text-container p {
+    grid-column: 2;
+    font-size: 15px;
+    font-family: "Copperplate Gothic Bold", fantasy;
+    color: #DD262F;
+}
+
+.text-container p:first-child { /* first-child indikerer CSS pseudo klasser, første barn af et element */
+    margin-left: -20px; /* Flytter den øverste tekst lidt til venstre */
+}
+
+.text-container p:last-child {/* last-child indikerer CSS pseudo klasser, andet barn af et element */
+    margin-left: 20px; /* Flytter den nederste tekst lidt til højre */
+}
+.box-container{
+    display: flex;
+   flex-direction: column; /* gør at boksene står ovenover hinanden */
+    margin-top: 30px;
+    justify-self: center;
+    gap: 20px; /* mellemrum mellem boksene */
+}
+
+.box {
+    border-radius: 5%;
+    padding: 15px;
+    width: 300px;
+    height: 50px;
+    background-color: #195d98;
+}
+
+.box a{
+    color: white;
+    text-decoration: none;
+}
+
+.box h5{
+    text-align: center;
+}
+
+

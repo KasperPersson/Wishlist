@@ -1,0 +1,63 @@
+body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: /* giver variable navne for de 4 rows*/
+            'banner banner'
+                'nav nav'
+                'main main'
+                'footer footer';
+}
+
+header {
+    display: flex; /* fleksibelt struktur, gør det muligt at være på linje*/
+    grid-area: banner;
+    padding: 15px;
+    background-color: #195d98;
+    align-items: center; /* sørge for alt er på linje med hinanden*/
+    justify-content: space-between; /* tekst og billedet på hver sin side*/
+    position:sticky; /*header følger med når man ruller ned på skærmen */
+}
+
+header h1 {
+    color: #DD262F;
+    font-size: 30px;
+    font-family: "Copperplate Gothic Bold", fantasy;
+    text-align: center;
+    position: absolute; /* placere teksten centralt*/
+    left: 50%; /* flytter teksten til midten */
+    transform: translateX(-50%); /* justere så teksten er præcist i midten */
+}
+
+header img{ /*TODO: laver en img container, da det er et png billede kan det ikke gøres rundt, da det ikke er firkantet*/
+    border-radius: 80%; /* Gør billedet rundt */
+    width: 50px; /* Sætter en fast størrelse på billedet */
+    height: 50px; /* Sætter en fast størrelse på billedet */
+}
+
+section {
+    grid-area: main; /* Bliver nr 3 i strukturen. Pga. variabel navn */
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* inddeler main i to kolonner*/
+    margin-top: 1em;
+}
+
+footer {
+    display: flex;
+    grid-area: footer;
+    padding: 15px;
+    background-color: #195d98;
+    align-items: center;
+    justify-content: space-between;
+    position:sticky; /*footer følger med når man ruller ned på skærmen */
+}
+
+footer a{
+    text-decoration: none;
+    color: #7cb5e8;
+}
+
+footer p{
+    justify-self: right;
+    color: #7cb5e8;
+}
