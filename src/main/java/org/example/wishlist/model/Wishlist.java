@@ -3,8 +3,8 @@ package org.example.wishlist.model;
 import java.util.ArrayList;
 
 public class Wishlist {
-    private String wishlistName;
     private int wishlistID;
+    private String wishlistName;
     private int price;
     private String wishlistDesc;
     private ArrayList<Wish> wishlist;
