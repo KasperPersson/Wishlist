@@ -4,7 +4,7 @@
 name: Build and deploy JAR app to Azure Web App - Droemmepakken
 
 on:
-  push:
+  pull_request:
     branches:
       - master
   workflow_dispatch:
@@ -21,10 +21,14 @@ jobs:
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
-          java-version: 'java21'
+          java-version: '21'
           distribution: 'microsoft'
 
       - name: Build with Maven
+        env:
+            DB_DATABASE_URL: ${{secrets.PROD_DATABASE_URL}}
+            DB_USERNAME: ${{secrets.PROD_USERNAME}}
+            DB_PASSWORD: ${{secrets.PROD_PASSWORD}}
         run: mvn clean install
 
       - name: Upload artifact for deployment job
