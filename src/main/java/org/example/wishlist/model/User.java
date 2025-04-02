@@ -7,6 +7,8 @@ public class User {
     private String mail;
     private String username;
     private String password;
+    private String uid;
+    private String pw;
 
 
     public User(int userID, String name, String mail, String username, String password) {
@@ -15,6 +17,27 @@ public class User {
         this.mail = mail;
         this.username = username;
         this.password = password;
+    }
+
+    public User(String uid, String pw) {
+        this.uid = uid;
+        this.pw = pw;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid() {
+        this.uid = uid;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw() {
+        this.pw = pw;
     }
 
     public int getUserID() {
@@ -55,5 +78,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid='" + uid + '\'' +
+                ", pw='" + pw + '\'' +
+                '}';
     }
 }
