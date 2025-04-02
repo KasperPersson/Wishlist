@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DRØMMEPAKKEN</title>
+  <link rel="stylesheet" th:href="@{/css/general.css}">
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+
+
+<!--<header class="header-box">-->
+<!--    <h1>DRØMMEPAKKEN</h1>-->
+<!--</header>-->
+
+<header th:replace="fragtments/header :: site-header"></header>
+
+    <section>
+        <img src="/images/gavegutten.png" height="400" width="400">
+        <div class="text-container">
+        <p>Gør det nemt at ønske</p>
+        <p>og endnu nemmere at give</p>
+        </div>
+
+        <div class="box-container">
+        <div class="box">
+            <h5><a th:href="@{/opret-bruger}">OPRET BRUGER</a></h5>
+        </div>
+
+        <div class="box">
+            <h5><a th:href="@{/login}">LOGIN</a></h5>
+        </div>
+        </div>
+    </section>
+
+<footer th:replace="fragtments/footer :: site-footer"></footer>
+
+</html>
