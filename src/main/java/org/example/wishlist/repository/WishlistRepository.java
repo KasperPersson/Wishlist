@@ -8,10 +8,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class WishlistRepository {
+public class WishlistRepository implements IWishlist<Wishlist> {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -46,10 +47,36 @@ public class WishlistRepository {
     }
 
 
-    public void updateWishlist(String name, Wishlist newWishlist) { //String id i stedet for name?
+    public void updateWishlist(Wishlist newWishlist) { //String id i stedet for name?
         String sql = "UPDATE wishlist SET wish = ?, wishlist = ?, price = ?, wishlistDesc = ?, wishlistName = ? WHERE id = ?";
         jdbcTemplate.update(sql, newWishlist.getWishlist(), newWishlist.getPrice(), newWishlist.getWishlistDesc(),
                 newWishlist.getWishlistName()); //Skal der ikke være et ID her?? //Hvorfor er der et wish i wishlist og en liste af wishes?
+
+    }
+
+    @Override
+    public void create(Wishlist wishlist) {
+
+    }
+
+    @Override
+    public List<Wishlist> readAll() {
+        String sql = "SELECT WISHLIST_ID, NAME, DESCRIPTION FROM wishlist";
+        return jdbcTemplate.query(sql, new WishListRowMapper());
+    }
+
+    @Override
+    public Wishlist read(int id) {
+        return null;
+    }
+
+    @Override
+    public void update(Wishlist wishlist) {
+
+    }
+
+    @Override
+    public void delete(int id) {
 
     }
 }
