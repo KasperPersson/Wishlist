@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" th:ref="@{/login.css}">
+    <link rel="stylesheet" th:href="@{/css/general.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
+
 <body>
+<header th:replace="fragtments/header :: site-header"></header>
+
+<section>
+    <img src="/images/gavegutten.png" height="400" width="400">
+
+    <div class="login-form">
 <h1>Login</h1>
-<form action="/login" method="post">
-    <p th:if="${wrongCredientials}" class="error">Forkert brugerid eller password</p>
-    <p><label>UserId:</label>
-        <input name="uid" type="text" autofocus></p>
-    <p><label>Password:</label>
+<form action="/login" method="post" class="form-box">
+    <p th:if="${wrongCredientials}" class="error">Forkert brugernavn eller kodeord. Prøv igen</p> <!-- TODO: forklar wrongCredientials -->
+    <p><label>Brugernavn:</label>
+        <input name="uid" type="text" autofocus></p> <!-- autofocus gør at man "starter" ved brugernavn input felt -->
+    <p><label>Kode:</label>
         <input name="pw" type="password"></p>
     <p>
         <button type="submit">Login</button>
       <a th:href="@{'/test'}"><button type="button">Fortryd</button></a>
     </p>
 </form>
+    </div>
+</section>
+
+<footer th:replace="fragtments/footer :: site-footer"></footer>
 </body>
 </html>
