@@ -6,6 +6,8 @@ body {
                 'nav nav'
                 'main main'
                 'footer footer';
+    height: 100%;
+    margin: 0; /* ingen mellemrum mellem sektioner og skærmkant*/
 }
 
 header {
@@ -36,6 +38,7 @@ header img{ /*TODO: laver en img container, da det er et png billede kan det ikk
 
 section {
     grid-area: main; /* Bliver nr 3 i strukturen. Pga. variabel navn */
+    flex: 1;
     justify-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr; /* inddeler main i to kolonner*/
@@ -49,7 +52,6 @@ footer {
     background-color: #195d98;
     align-items: center;
     justify-content: space-between;
-    position:sticky; /*footer følger med når man ruller ned på skærmen */
 }
 
 footer a{
