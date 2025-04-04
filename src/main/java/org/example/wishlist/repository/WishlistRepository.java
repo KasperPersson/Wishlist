@@ -54,6 +54,12 @@ public class WishlistRepository implements IWishlist<Wishlist> {
 
     }
 
+    public Wishlist getWishlistById(int id) {
+        String sql = "SELECT WISHLIST_ID, NAME, DESCRIPTION FROM wishlist WHERE WISHLIST_ID = ?";
+
+        return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), id);
+    }
+
     @Override
     public void create(Wishlist wishlist) {
 
