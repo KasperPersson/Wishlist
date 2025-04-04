@@ -10,6 +10,9 @@
 
 <div class="wishlist-container">
     <h1>Mine ønskelister</h1>
+    <h3>
+        <button onclick="window.location.href='/wishlist/create'">Opret ønskeliste</button>
+        </h3>
 
     <div class="wishlists">
         <div th:each="wishlist : ${wishLists}" class="wishlist-item">
