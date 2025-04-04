@@ -11,7 +11,7 @@ public class WishRowMapper implements RowMapper<Wish> {
         int id = rs.getInt("wishlist_id");
         String name = rs.getString("name");
         String description = rs.getString("description");
-        int price = rs.getInt("price");
+        int price = rs.getInt("pris");
         String link = rs.getString("link");
 
         return new Wish(name, id, description, price, link);

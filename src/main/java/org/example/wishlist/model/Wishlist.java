@@ -48,4 +48,8 @@ public class Wishlist {
     public void setWishlistDesc(String wishlistDesc) {
         this.wishlistDesc = wishlistDesc;
     }
+
+    public int getWishlistID() {
+        return wishlistID;
+    }
 }
