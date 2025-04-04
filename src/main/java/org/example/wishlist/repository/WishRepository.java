@@ -30,6 +30,10 @@ public class WishRepository {
         return jdbcTemplate.query(sql, new WishRowMapper());
     }
 
+    public List<Wish> getWishById(int wishlistId) {
+        String sql = "SELECT wishlist_id, name, description, pris, link FROM wish WHERE wishlist_id = ?";
+        return jdbcTemplate.query(sql, new WishRowMapper(), wishlistId);
+    }
 
     public void addWish(Wish wish) {
         String sql = "INSERT INTO wish(name, description, price, link) VALUES (?,?,?,?)";

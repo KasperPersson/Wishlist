@@ -43,4 +43,12 @@ public class WishService {
         // user not found
         return false;
     }
+
+    public Wishlist getWishlistById(int id) {
+        return wishlistRepository.getWishlistById(id);
+    }
+
+    public List<Wish> getWishById(int id) {
+        return wishRepository.getWishById(id);
+    }
 }

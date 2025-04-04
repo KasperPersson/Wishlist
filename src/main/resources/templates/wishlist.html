@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/general.css}">
+<link rel="stylesheet" th:href="@{/css/wishlist.css}">
 <head>
     <title>Ønskelister</title>
-    <style>
-        .wishlist { border: 1px solid black; padding: 10px; margin-bottom: 10px; }
-        .wish { margin-left: 20px; }
-    </style>
 </head>
+<header th:replace="fragtments/header :: site-header"></header>
 <body>
-<h1>Mine Ønskelister</h1>
 
-<div th:each="wishlist : ${wishLists}" class="wishlist">
-    <h2 th:text="${wishlist.wishlistName}"></h2>
-    <p th:text="${wishlist.wishlistDesc}"></p>
-    <p><strong>Total pris:</strong> <span th:text="${wishlist.price}"></span> kr.</p>
+<div class="wishlist-container">
+    <h1>Mine ønskelister</h1>
 
-    <h3>Ønsker:</h3>
-    <ul>
-        <li th:each="wish : ${wishlist.wishlist}">
-            <span class="wish"><strong th:text="${wish.wishName}"></strong> - <span th:text="${wish.price}"></span> kr.</span>
-            <a th:href="${wish.link}" target="_blank">Link</a>
-        </li>
-    </ul>
-</div>
+    <div class="wishlists">
+        <div th:each="wishlist : ${wishLists}" class="wishlist-item">
+            <a th:href="@{'/wishlists/' + ${wishlist.wishlistID}}">
+                <h2 th:text="${wishlist.wishlistName}"></h2>
+            </a>
+            <p th:text="${wishlist.wishlistDesc}"></p>
+        </div>
+    </div>
+    </div>
 </body>
+
+<footer th:replace="fragtments/footer :: site-footer"></footer>
 </html>

@@ -36,7 +36,7 @@ public class SessionController {
         if (wishService.login(uid, pw)) {
             session.setAttribute("user", new User(uid, pw));
             session.setMaxInactiveInterval(60);
-            return "redirect:/admin";
+            return "redirect:/wishlists";
         }
         model.addAttribute("wrongCredientials", true);
         return "login";

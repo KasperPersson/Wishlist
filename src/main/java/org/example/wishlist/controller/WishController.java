@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public class WishController {
     }
 
     @GetMapping("")
-    public String index(){
-    return "index";
+    public String index() {
+        return "index";
     }
 
     @GetMapping("/wishlists")
@@ -34,8 +35,18 @@ public class WishController {
         return "wishlist";
     }
 
+    @GetMapping("/wishlists/{id}")
+    public String viewWishlist(@PathVariable int id, Model model) {
+        Wishlist wishlist = wishService.getWishlistById(id);
+        List<Wish> wishes = wishService.getWishById(id);
+        model.addAttribute("wishlist", wishlist);
+        model.addAttribute("wishes", wishes);
+
+        return "wishlist-details";
+    }
+
     @PostMapping("/update")
-    public String editWish(@ModelAttribute("wish") Wish wish){
+    public String editWish(@ModelAttribute("wish") Wish wish) {
         wishService.updateWish(wish);
         return "redirect:/wishes";
     }
