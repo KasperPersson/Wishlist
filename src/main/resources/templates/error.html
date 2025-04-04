@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/general.css}">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Error</title>
+</head>
+<header th:replace="fragtments/header :: site-header"></header>
+<body>
+<h2>Beklager der skete en fejl! Tjek at der er indtastet en korrekt URL</h2>
+<img src="/images/gavegutten_sad.png" alt="Fejl billede">
+<h3>
+  <a th:href="@{'/'}">Tilbage til forsiden</a>
+</h3>
+</body>
+<footer th:replace="fragtments/footer :: site-footer"></footer>
+</html>
