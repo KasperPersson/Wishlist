@@ -1,33 +1,46 @@
-body {
-    max-width: 500px;
-    margin: auto;
-    background: white;
-}
-
-
 h1 {
-    font-family:Arial;
-    font-size: 1.5em;
-
+    font-family: serif;
+    font-size: 35px;
+    text-align: center;
 }
 
 label {
     width: 100px;
     display: inline-block;
+    color: white;
 }
 
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
+.login-form{
+    grid-area: main;
+    grid-column: 2;
+    justify-content: space-between;
+    justify-self: center;
 }
 
-
-th {
-    text-align: left;
+.form-box {
+    border-radius: 5%;
+    padding: 15px;
+    width: 300px;
+    height: auto;
+    background-color: #195d98;
+    justify-self: center;
 }
 
+button {
+    font-family: serif;
+    color: #195d98;
+    background-color: #7cb5e8;
+    border-color: #7cb5e8;
+    border-radius: 10%;
+}
+
+section img{
+    grid-area: main;
+    grid-column: 1;
+    justify-self: left;
+}
 .error {
-    color: red;
+    font-size: 14px;
+    color: yellow;
+    font-weight: bold;
 }
