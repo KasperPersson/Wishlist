@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Wishlist Details</title>
+    <link rel="stylesheet" th:href="@{/css/general.css}">
     <link rel="stylesheet" th:href="@{/css/wishlist.css}">
 </head>
+<header th:replace="fragtments/header :: site-header"></header>
 <body>
 <h1 th:text="${wishlist.wishlistName}"></h1>
 <p th:text="${wishlist.wishlistDesc}">
@@ -17,6 +19,10 @@
         <a th:href="${wish.link}" target="_blank">Link</a>
     </li>
 </ul>
+<h3>
 <a th:href="@{'/wishlists'}">Tilbage til Ønskelister</a>
+</h3>
 </body>
+
+<footer th:replace="fragtments/footer :: site-footer"></footer>
 </html>
