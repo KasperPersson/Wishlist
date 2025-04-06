@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redigering af ønske</title>
+</head>
+<body>
+<h1>Redigering af ønske</h1>
+
+<form th:action="@{/update}" th:method="post" th:object="${wish}">
+  <input type="hidden" th:field="*{wishID}">
+
+  <label for="name">Navn:</label>
+  <input type="text" id="name" th:field="*{wishName}"><br>
+
+  <label for="description">Beskrivelse:</label>
+  <textarea type="text" id="description" th:field="*{description}"></textarea><br>
+
+  <label for="price">Pris:</label>
+  <input type="text" id="price" th:field="*{price}"><br>
+
+  <label for="link">Link:</label>
+  <input type="text" id="link" th:field="*{link}"><br>
+<button type="submit">Gem</button>
+
+</form>
+</body>
+</html>
