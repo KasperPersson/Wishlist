@@ -17,4 +17,7 @@ public class WishListRowMapper implements RowMapper<Wishlist> {
                 rs.getString("NAME")
         );
     }
+
+
+
 }

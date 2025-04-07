@@ -1,13 +1,14 @@
 package org.example.wishlist.repository;
 
-import org.example.wishlist.model.Wish;
-import org.example.wishlist.model.Wishlist;
-import org.example.wishlist.model.WishListRowMapper;
-import org.example.wishlist.model.WishRowMapper;
+import org.example.wishlist.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +35,19 @@ public class WishlistRepository implements IWishlist<Wishlist> {
     }
 
 
-    public void addWishlist(Wishlist wishlist, int userID) {
-        String sql = "INSERT INTO WISHLIST (USER_ID, NAME, DESCRIPTION) VALUES (?,?,?)";
-        jdbcTemplate.update(sql, userID, wishlist.getWishlistName(), wishlist.getWishlistDesc());
+    public int addWishlist(Wishlist wishlist) {
+        String sql = "INSERT INTO WISHLIST (NAME, DESCRIPTION) VALUES (?,?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(connection ->{
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, wishlist.getWishlistName());
+            ps.setString(2, wishlist.getWishlistDesc());
+            return ps;
+        }, keyHolder);
+
+        return keyHolder.getKey().intValue();
+
     }
 
 
@@ -57,10 +68,14 @@ public class WishlistRepository implements IWishlist<Wishlist> {
 
     }
 
-    public Wishlist getWishlistById(int id) {
-        String sql = "SELECT WISHLIST_ID, NAME, DESCRIPTION FROM wishlist WHERE WISHLIST_ID = ?";
+    public Wishlist getWishlistById(int wishlistId) {
+        String sql = "SELECT wishlist_id, user_id, name, description FROM wishlist WHERE wishlist_id = ?";
+        return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), wishlistId);
+    }
 
-        return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), id);
+    public void save(Wishlist wishlist) {
+        String sql = "INSERT INTO WISHLIST (NAME, DESCRIPTION) VALUES (?, ?)";
+        jdbcTemplate.update(sql, wishlist.getWishlistName(), wishlist.getWishlistDesc());
     }
 
     @Override
