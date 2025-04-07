@@ -25,6 +25,10 @@ public class Wish {
         this.wishlistId = wishlistId;
     }
 
+    public Wish(){
+
+    }
+
 
     public String getWishName() {
         return wishName;
@@ -64,5 +68,13 @@ public class Wish {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public int getWishlistId() {
+        return wishlistId;
+    }
+
+    public void setWishlistId(int wishlistId) {
+        this.wishlistId = wishlistId;
     }
 }
