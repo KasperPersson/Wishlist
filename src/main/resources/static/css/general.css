@@ -8,6 +8,7 @@ body {
                 'footer footer';
     height: 100%;
     margin: 0; /* ingen mellemrum mellem sektioner og skærmkant*/
+    min-height: 100vh;
 }
 
 header {
@@ -46,12 +47,11 @@ section {
 }
 
 footer {
-    display: flex;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
     grid-area: footer;
-    padding: 15px;
     background-color: #195d98;
-    align-items: center;
-    justify-content: space-between;
 }
 
 footer a{
@@ -62,4 +62,11 @@ footer a{
 footer p{
     justify-self: right;
     color: #7cb5e8;
+}
+
+footer div {
+    padding : 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
