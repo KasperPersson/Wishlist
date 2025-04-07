@@ -7,7 +7,7 @@
 <body>
 <h1>Tilføj ønske</h1>
 
-<form th:action="@{/adding}" th:method="post" th:object="${wish}">
+<form th:action="@{/wishlists/{id}/adding(id=${wishlist.wishlistID})}" th:method="post" th:object="${wish}">
     <input type="hidden" th:field="*{wishID}">
 
     <label for="name">Navn:</label>
@@ -17,7 +17,7 @@
     <textarea type="text" id="description" th:field="*{description}"></textarea><br>
 
     <label for="price">Pris:</label>
-    <input type="text" id="price" th:field="*{price}"><br>
+    <input type="number" id="price" th:field="*{price}"><br>
 
     <label for="link">Link:</label>
     <input type="text" id="link" th:field="*{link}"><br>
