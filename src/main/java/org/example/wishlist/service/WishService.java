@@ -48,7 +48,12 @@ public class WishService {
         return wishlistRepository.getWishlistById(id);
     }
 
-    public List<Wish> getWishById(int id) {
-        return wishRepository.getWishById(id);
+    public List<Wish> getAllWishesById(int id) {
+        return wishRepository.getAllWishesById(id);
     }
+
+    public Wish getSpecificWishById(int id){
+        return wishRepository.getSpecificWishById(id);
+    }
+
 }
