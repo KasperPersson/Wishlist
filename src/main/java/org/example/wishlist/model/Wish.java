@@ -21,11 +21,6 @@ public class Wish {
         this.wishlistId = wishlistId;
     }
 
-    public Wish(){
-
-    }
-
-
     public String getWishName() {
         return wishName;
     }
