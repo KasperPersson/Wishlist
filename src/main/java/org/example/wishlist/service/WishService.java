@@ -67,4 +67,8 @@ public class WishService {
         return wishlistRepository.addWishlist(wishlist);
     }
 
+    public void addWish(Wish wish){
+     wishRepository.addWish(wish);
+    }
+
 }
