@@ -1,8 +1,6 @@
 package org.example.wishlist.repository;
 
 import org.example.wishlist.model.Wish;
-import org.example.wishlist.model.Wishlist;
-import org.example.wishlist.model.WishListRowMapper;
 import org.example.wishlist.model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -30,9 +28,14 @@ public class WishRepository {
         return jdbcTemplate.query(sql, new WishRowMapper());
     }
 
-    public List<Wish> getWishById(int wishlistId) {
+    public List<Wish> getAllWishesById(int wishlistId) {
         String sql = "SELECT wishlist_id, name, description, pris, link FROM wish WHERE wishlist_id = ?";
         return jdbcTemplate.query(sql, new WishRowMapper(), wishlistId);
+    }
+
+    public Wish getSpecificWishById(int wishId) {
+        String sql = "SELECT wishlist_id, name, description, pris, link FROM wish WHERE wish_id = ? LIMIT 1";
+        return jdbcTemplate.queryForObject(sql, new WishRowMapper(), wishId);
     }
 
     public void addWish(Wish wish) {
@@ -55,8 +58,8 @@ public class WishRepository {
 
 
     public void updateWish(Wish wish) {
-        String sql = "UPDATE wish SET wishName = ?, description = ?, price = ?, link = ? WHERE id = ?";
-        jdbcTemplate.update(sql, wish.getWishName(), wish.getDescription(), wish.getPrice(), wish.getLink()); //wish.getId()) burde den ikke være der?
+        String sql = "UPDATE wish SET name = ?, description = ?, pris = ?, link = ? WHERE WISH_ID = ?";
+        jdbcTemplate.update(sql, wish.getWishName(), wish.getDescription(), wish.getPrice(), wish.getLink(), wish.getWishID()); //wish.getId()) burde den ikke være der?
     }
 
 

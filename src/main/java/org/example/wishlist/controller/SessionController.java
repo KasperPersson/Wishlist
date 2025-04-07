@@ -42,11 +42,6 @@ public class SessionController {
         return "login";
     }
 
-    @GetMapping("admin")
-    public String showAdmin(HttpSession session) {
-        return isLoggedIn(session) ? "admin" : "login";
-    }
-
     @GetMapping("logout")
     public String logout(HttpSession session) {
         session.invalidate();

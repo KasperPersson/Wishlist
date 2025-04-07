@@ -3,15 +3,9 @@ package org.example.wishlist.controller;
 import org.example.wishlist.model.Wish;
 import org.example.wishlist.model.Wishlist;
 import org.example.wishlist.service.WishService;
-import org.example.wishlist.model.Wish;
-import org.example.wishlist.model.Wishlist;
-import org.example.wishlist.service.WishService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,16 +32,39 @@ public class WishController {
     @GetMapping("/wishlists/{id}")
     public String viewWishlist(@PathVariable int id, Model model) {
         Wishlist wishlist = wishService.getWishlistById(id);
-        List<Wish> wishes = wishService.getWishById(id);
+        List<Wish> wishes = wishService.getAllWishesById(id);
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
+
+        for (Wish wish : wishes) {
+            System.out.println("Wish ID: " + wish.getWishID());
+        }
 
         return "wishlist-details";
     }
 
+    //henter layout for specifict ønske
+    @GetMapping("/wishes/{id}")
+    public String viewWish (@PathVariable int id, Model model){
+        Wish wish = wishService.getSpecificWishById(id);
+        model.addAttribute("wish", wish);
+
+        return "wish-details";
+    }
+
+    //henter layout for redigering af ønske
+    @GetMapping("/wishes/{id}/edit")
+    public String editWish(@PathVariable int id, Model model){
+        Wish wish = wishService.getSpecificWishById(id);
+        model.addAttribute("wish", wish);
+
+        return "edit-wish";
+    }
+
+    //updatere ønsket
     @PostMapping("/update")
-    public String editWish(@ModelAttribute("wish") Wish wish) {
+    public String updateWish(@ModelAttribute("wish") Wish wish) {
         wishService.updateWish(wish);
-        return "redirect:/wishes";
+        return "redirect:/wishes/" + wish.getWishID();
     }
 }
