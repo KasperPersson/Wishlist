@@ -35,32 +35,34 @@ class WishControllerTest {
     private WishController wishController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(wishController).build();
     }
 
     @AfterEach
-    void tearDown(){}
+    void tearDown() {
+    }
 
     @Test
-    void index() {}
+    void index() {
+    }
 
     @Test
     void getAllWishLists() throws Exception {
         //arrange
-       Wishlist wishlist1 = new Wishlist(1, new ArrayList<>(), 200, "julegave ønsker", "Jul 2025");
-       Wishlist wishlist2 = new Wishlist(2, new ArrayList<>(), 700, "julegave ønsker sidste år", "Jul 2024");
-       List<Wishlist> mockLists = List.of(wishlist1, wishlist2);
+        Wishlist wishlist1 = new Wishlist(1, new ArrayList<>(), 200, "julegave ønsker", "Jul 2025");
+        Wishlist wishlist2 = new Wishlist(2, new ArrayList<>(), 700, "julegave ønsker sidste år", "Jul 2024");
+        List<Wishlist> mockLists = List.of(wishlist1, wishlist2);
 
-       when(wishService.getAllWishLists()).thenReturn(mockLists);
+        when(wishService.getAllWishLists()).thenReturn(mockLists);
 
-       //act & assert
+        //act & assert
         mockMvc.perform(get("/wishlists")) //laver get request til controller
                 .andExpect(status().isOk())
                 .andExpect(view().name("wishlist"))
-                .andExpect(model().attribute("wishlists",mockLists));
+                .andExpect(model().attribute("wishLists", mockLists));
 
-        verify(wishService,times(1)).getAllWishLists(); //sikre metoden kaldes én gang, ikke nul eller flere gange
+        verify(wishService, times(1)).getAllWishLists(); //sikre metoden kaldes én gang, ikke nul eller flere gange
     }
 
     @Test
@@ -68,29 +70,29 @@ class WishControllerTest {
         //arrange
         int wishlistID = 1;
         Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1200, "fødselsdagsønsker", "30 års fødselsdag");
-        List<Wish> wishes = List.of(new Wish("landsholdstrøje", 1, "det danske herrelandshold (fodbold) nye trøje", 499, "www.dbu.dk"),
-                new Wish("Sims 4", 2, "til playstation", 249, "www.ea.com"));
+        List<Wish> wishes = List.of(new Wish("landsholdstrøje", 1, "det danske herrelandshold (fodbold) nye trøje", 499, "www.dbu.dk", 1),
+                new Wish("Sims 4", 2, "til playstation", 249, "www.ea.com", 1));
 
         //mocker wishService så controller får de dataer vi har indtastet
         when(wishService.getWishlistById(wishlistID)).thenReturn(wishlist);
         when(wishService.getAllWishesById(wishlistID)).thenReturn(wishes);
 
         //act & assert
-        mockMvc.perform(get("/wishlists/{id}",wishlistID))
+        mockMvc.perform(get("/wishlists/{id}", wishlistID))
                 .andExpect(status().isOk())
                 .andExpect(view().name("wishlist-details"))
                 .andExpect(model().attribute("wishlist", wishlist))
                 .andExpect(model().attribute("wishes", wishes));
 
-        verify(wishService,times(1)).getWishlistById(wishlistID);
-        verify(wishService,times(1)).getAllWishesById(wishlistID);
+        verify(wishService, times(1)).getWishlistById(wishlistID);
+        verify(wishService, times(1)).getAllWishesById(wishlistID);
     }
 
     @Test
-    void viewWish() throws Exception{
+    void viewWish() throws Exception {
         //arrange
         int wishID = 1;
-        Wish wish = new Wish("træ abe", wishID, "Den største fra Kaj Boyesen", 1299, "www.bahne.dk");
+        Wish wish = new Wish("træ abe", wishID, "Den største fra Kaj Boyesen", 1299, "www.bahne.dk", 1);
         when(wishService.getSpecificWishById(wishID)).thenReturn(wish);
 
         //act & assert
@@ -99,18 +101,31 @@ class WishControllerTest {
                 .andExpect(view().name("wish-details"))
                 .andExpect(model().attribute("wish", wish));
 
-        verify(wishService,times(1)).getSpecificWishById(wishID);
+        verify(wishService, times(1)).getSpecificWishById(wishID);
 
     }
 
     @Test
-    void editWish() {
+    void editWish() throws Exception {
+        //arrange
+        int wishID = 1;
+        Wish wish = new Wish("træ abe", wishID, "Den største fra Kaj Boyesen", 1299, "www.bahne.dk", 1);
+        when(wishService.getSpecificWishById(wishID)).thenReturn(wish);
 
+        //act & assert
+        mockMvc.perform(get("/wishes/{id}/edit", wishID))
+                .andExpect(status().isOk())
+                .andExpect(view().name("edit-wish"))
+                .andExpect(model().attribute("wish", wish));
+
+        verify(wishService, times(1)).getSpecificWishById(wishID);
 
     }
 
     @Test
     void updateWish() {
+
+
     }
 
     @Test
