@@ -40,10 +40,13 @@ public class WishlistRepository implements IWishlist<Wishlist> {
     }
 
 
-    public String deleteWishlist(int wishlistID) {
+    public void deleteWishlist(Wishlist wishlist) {
+
+        String deleteWishesSql = "DELETE FROM wish WHERE wishlist_ID = ?";
+        jdbcTemplate.update(deleteWishesSql, wishlist.getWishlistID());
+
         String sql = "DELETE FROM wishlist WHERE wishlist_ID = ?";
-        jdbcTemplate.update(sql, wishlistID);
-        return "delete success";
+        jdbcTemplate.update(sql, wishlist.getWishlistID());
     }
 
 
