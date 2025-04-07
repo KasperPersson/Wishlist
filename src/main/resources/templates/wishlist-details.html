@@ -11,12 +11,15 @@
 <p th:text="${wishlist.wishlistDesc}">
 
 <h2>Ønsker</h2>
+<div>
 <ul>
     <li th:each="wish : ${wishes}">
-      <a th:href="@{/wishes/{id}(id=${wish.wishID})}"> <h3 th:text="${wish.wishName}"></h3></a>
+      <a th:href="@{/wishes/{id}(id=${wish.wishID})}">
+          <h3 th:text="${wish.wishName}"></h3></a>
         <p th:text="${wish.description}"></p>
         <p>Pris: <span th:text="${wish.price}"></span></p>
-        <a th:href="${wish.link}" target="_blank">Link</a>
+        <a th:href="${wish.link}" target="_blank">Link</a> <!-- Betyder den åbner i ny fane og ikke samme fane -->
+        <p>ID: <span th:text="${wish.wishID}"></span></p> <!-- Test kode til at se om den henter korrekt id -->
     </li>
 </ul>
 <div>
@@ -27,14 +30,13 @@
         Slet
     </button>
     </form>
-
-
 </div>
 <h3>
 <a th:href="@{'/wishlists'}">Tilbage til Ønskelister</a>
 </h3>
-
-</body>
+</div>
 <footer th:replace="fragtments/footer :: site-footer"></footer>
+</body>
+
 
 </html>

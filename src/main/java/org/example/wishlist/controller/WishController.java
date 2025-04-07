@@ -1,5 +1,6 @@
 package org.example.wishlist.controller;
 
+import org.example.wishlist.model.User;
 import org.example.wishlist.model.Wish;
 import org.example.wishlist.model.Wishlist;
 import org.example.wishlist.service.WishService;
@@ -36,16 +37,12 @@ public class WishController {
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
 
-        for (Wish wish : wishes) {
-            System.out.println("Wish ID: " + wish.getWishID());
-        }
-
         return "wishlist-details";
     }
 
     //henter layout for specifict ønske
     @GetMapping("/wishes/{id}")
-    public String viewWish (@PathVariable int id, Model model){
+    public String viewWish(@PathVariable int id, Model model) {
         Wish wish = wishService.getSpecificWishById(id);
         model.addAttribute("wish", wish);
 
@@ -54,7 +51,7 @@ public class WishController {
 
     //henter layout for redigering af ønske
     @GetMapping("/wishes/{id}/edit")
-    public String editWish(@PathVariable int id, Model model){
+    public String editWish(@PathVariable int id, Model model) {
         Wish wish = wishService.getSpecificWishById(id);
         model.addAttribute("wish", wish);
 
@@ -86,4 +83,21 @@ public class WishController {
         wishService.deleteWishListById(wishlist);
         return "redirect:/wishlists";
     }
+
+    //viser create formen til tilføjelse af ny ønskeliste
+    @GetMapping("/wishlists/create")
+    public String createWishlistForm(Model model) {
+        model.addAttribute("wishlist", new Wishlist());
+        return "wishlists-create";
+    }
+
+    //går ind på ønskelisten man lige har tilføjet, når man trykker gem
+    @PostMapping("/wishlists/create")
+    public String createWishlist(@ModelAttribute Wishlist wishlist){
+        int newID = wishService.addWishlist(wishlist);
+       return "redirect:/wishlists/" + newID;
+    }
+
+
+
 }
