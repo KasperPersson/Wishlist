@@ -30,7 +30,7 @@ public class WishService {
         wishRepository.updateWish(wish);
     }
 
-    public void updateWishlist(Wishlist wishlist){
+    public void updateWishlist(Wishlist wishlist) {
         wishlistRepository.updateWishlist(wishlist);
     }
 
@@ -52,8 +52,16 @@ public class WishService {
         return wishRepository.getAllWishesById(id);
     }
 
-    public Wish getSpecificWishById(int id){
+    public Wish getSpecificWishById(int id) {
         return wishRepository.getSpecificWishById(id);
+    }
+
+    public void save(Wishlist wishlist) {
+        wishlistRepository.save(wishlist);
+    }
+
+    public int addWishlist(Wishlist wishlist){
+        return wishlistRepository.addWishlist(wishlist);
     }
 
 }
