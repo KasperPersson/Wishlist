@@ -16,6 +16,10 @@ public class Wish {
         this.link = link;
     }
 
+    public Wish(){
+
+    }
+
 
     public String getWishName() {
         return wishName;

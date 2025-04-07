@@ -59,4 +59,8 @@ public class WishService {
         wishlistRepository.deleteWishlist(wishlist);
     }
 
+    public void addWish(Wish wish){
+     wishRepository.addWish(wish);
+    }
+
 }
