@@ -36,10 +36,6 @@ public class WishController {
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
 
-        for (Wish wish : wishes) {
-            System.out.println("Wish ID: " + wish.getWishID());
-        }
-
         return "wishlist-details";
     }
 
