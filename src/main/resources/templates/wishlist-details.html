@@ -13,12 +13,22 @@
 <h2>Ønsker</h2>
 <ul>
     <li th:each="wish : ${wishes}">
-      <a th:href="@{/wishes/{id}(id=${wish.wishID})}"> <h3 th:text="${wish.wishName}"></h3></a>
+      <a th:href="@{/wishes/{id}(id=${wish.wishID})}">
+          <h3 th:text="${wish.wishName}"></h3></a>
         <p th:text="${wish.description}"></p>
         <p>Pris: <span th:text="${wish.price}"></span></p>
-        <a th:href="${wish.link}" target="_blank">Link</a>
+        <a th:href="${wish.link}" target="_blank">Link</a> <!-- Betyder den åbner i ny fane og ikke samme fane -->
+        <p>ID: <span th:text="${wish.wishID}"></span></p> <!-- Test kode til at se om den henter korrekt id -->
     </li>
 </ul>
+<div>
+    <form th:action="@{/wishlists/delete/{id}(id=${wishlist.wishlistID})}" method="post">
+    <button type="submit" onclick="return confirm('Er du sikker på du vil slette ønskelisten?')"> <!-- return confirm åbner et pop-up window
+    som gør at man skal confirme at man vil slette en ønskeliste -->
+        Slet
+    </button>
+    </form>
+</div>
 <h3>
 <a th:href="@{'/wishlists'}">Tilbage til Ønskelister</a>
 </h3>

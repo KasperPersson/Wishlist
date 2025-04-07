@@ -29,12 +29,12 @@ public class WishRepository {
     }
 
     public List<Wish> getAllWishesById(int wishlistId) {
-        String sql = "SELECT wishlist_id, name, description, pris, link FROM wish WHERE wishlist_id = ?";
+        String sql = "SELECT wish_id, wishlist_id, name, description, pris, link FROM wish WHERE wishlist_id = ?";
         return jdbcTemplate.query(sql, new WishRowMapper(), wishlistId);
     }
 
     public Wish getSpecificWishById(int wishId) {
-        String sql = "SELECT wishlist_id, name, description, pris, link FROM wish WHERE wish_id = ? LIMIT 1";
+        String sql = "SELECT wish_id, wishlist_id, name, description, pris, link FROM wish WHERE wish_id = ?";
         return jdbcTemplate.queryForObject(sql, new WishRowMapper(), wishId);
     }
 

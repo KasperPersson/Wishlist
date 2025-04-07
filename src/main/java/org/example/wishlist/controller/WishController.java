@@ -37,10 +37,6 @@ public class WishController {
         model.addAttribute("wishlist", wishlist);
         model.addAttribute("wishes", wishes);
 
-        for (Wish wish : wishes) {
-            System.out.println("Wish ID: " + wish.getWishID());
-        }
-
         return "wishlist-details";
     }
 
@@ -67,6 +63,13 @@ public class WishController {
     public String updateWish(@ModelAttribute("wish") Wish wish) {
         wishService.updateWish(wish);
         return "redirect:/wishes/" + wish.getWishID();
+    }
+
+    @PostMapping("/wishlists/delete/{id}")
+    public String deleteWishList(@PathVariable int id) {
+        Wishlist wishlist = wishService.getWishlistById(id);
+        wishService.deleteWishListById(wishlist);
+        return "redirect:/wishlists";
     }
 
     //viser create formen til tilføjelse af ny ønskeliste

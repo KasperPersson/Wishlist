@@ -55,6 +55,9 @@ public class WishService {
     public Wish getSpecificWishById(int id) {
         return wishRepository.getSpecificWishById(id);
     }
+    public void deleteWishListById(Wishlist wishlist) {
+        wishlistRepository.deleteWishlist(wishlist);
+    }
 
     public void save(Wishlist wishlist) {
         wishlistRepository.save(wishlist);

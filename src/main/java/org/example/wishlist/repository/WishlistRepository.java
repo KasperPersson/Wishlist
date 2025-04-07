@@ -51,10 +51,13 @@ public class WishlistRepository implements IWishlist<Wishlist> {
     }
 
 
-    public String deleteWishlist(int wishlistID) {
+    public void deleteWishlist(Wishlist wishlist) {
+
+        String deleteWishesSql = "DELETE FROM wish WHERE wishlist_ID = ?";
+        jdbcTemplate.update(deleteWishesSql, wishlist.getWishlistID());
+
         String sql = "DELETE FROM wishlist WHERE wishlist_ID = ?";
-        jdbcTemplate.update(sql, wishlistID);
-        return "delete success";
+        jdbcTemplate.update(sql, wishlist.getWishlistID());
     }
 
 
@@ -65,10 +68,9 @@ public class WishlistRepository implements IWishlist<Wishlist> {
 
     }
 
-    public Wishlist getWishlistById(int id) {
-        String sql = "SELECT WISHLIST_ID, NAME, DESCRIPTION FROM wishlist WHERE WISHLIST_ID = ?";
-
-        return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), id);
+    public Wishlist getWishlistById(int wishlistId) {
+        String sql = "SELECT wishlist_id, user_id, name, description FROM wishlist WHERE wishlist_id = ?";
+        return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), wishlistId);
     }
 
     public void save(Wishlist wishlist) {
