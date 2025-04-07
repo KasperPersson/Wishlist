@@ -9,12 +9,8 @@ public class Wish {
     private String link;
     private int wishlistId;
 
-    public Wish(String name, int wishID, String description, int price, String link) {
-        this.wishName = name;
-        this.wishID = wishID;
-        this.description = description;
-        this.price = price;
-        this.link = link;
+    public Wish() {
+
     }
     public Wish(String name, int wishID, String description, int price, String link, int wishlistId) {
         this.wishName = name;
