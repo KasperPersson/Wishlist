@@ -22,9 +22,10 @@ header {
 }
 
 header h1 {
-    color: #DD262F;
-    font-size: 30px;
-    font-family: "Copperplate Gothic Bold", fantasy;
+    color: #7cb5e8;
+    font-size: 45px;
+    font-stretch: expanded;
+    font-family: "Copperplate Gothic Bold", "Arial Black";
     text-align: center;
     position: absolute; /* placere teksten centralt*/
     left: 50%; /* flytter teksten til midten */
