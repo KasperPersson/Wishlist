@@ -111,6 +111,9 @@ public class WishController {
     }
 
 
+
+
+
     @PostMapping("/wishlists/edit")
     public String updateWishlist(@ModelAttribute("wishlist") Wishlist wishlist) {
         wishService.updateWishlist(wishlist);
