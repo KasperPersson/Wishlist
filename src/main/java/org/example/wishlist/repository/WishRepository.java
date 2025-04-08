@@ -50,10 +50,9 @@ public class WishRepository {
 
 
 
-    public String deleteWish(int wishID) {
+    public void deleteWish(int id) {
         String sql = "DELETE FROM wish WHERE WISH_ID = ?";
-        jdbcTemplate.update(sql, wishID);
-        return "delete success";
+        jdbcTemplate.update(sql, id);
     }
 
 

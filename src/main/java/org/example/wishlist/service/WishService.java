@@ -61,6 +61,10 @@ public class WishService {
         wishlistRepository.deleteWishlist(wishlist);
     }
 
+    public void deleteWishById(int id) {
+        wishRepository.deleteWish(id);
+    }
+
     public void save(Wishlist wishlist) {
         wishlistRepository.save(wishlist);
     }
