@@ -50,8 +50,8 @@ class WishControllerTest {
     @Test
     void getAllWishLists() throws Exception {
         //arrange
-        Wishlist wishlist1 = new Wishlist(1, new ArrayList<>(), 200, "julegave ønsker", "Jul 2025");
-        Wishlist wishlist2 = new Wishlist(2, new ArrayList<>(), 700, "julegave ønsker sidste år", "Jul 2024");
+        Wishlist wishlist1 = new Wishlist(1, new ArrayList<>(), "julegave ønsker", "Jul 2025");
+        Wishlist wishlist2 = new Wishlist(2, new ArrayList<>(), "julegave ønsker sidste år", "Jul 2024");
         List<Wishlist> mockLists = List.of(wishlist1, wishlist2);
 
         when(wishService.getAllWishlists()).thenReturn(mockLists);
@@ -69,7 +69,7 @@ class WishControllerTest {
     void viewWishlist() throws Exception {
         //arrange
         int wishlistID = 1;
-        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1200, "fødselsdagsønsker", "30 års fødselsdag");
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), "fødselsdagsønsker", "30 års fødselsdag");
         List<Wish> wishes = List.of(new Wish("landsholdstrøje", 1, "det danske herrelandshold (fodbold) nye trøje", 499, "www.dbu.dk", 1),
                 new Wish("Sims 4", 2, "til playstation", 249, "www.ea.com", 1));
 
@@ -146,7 +146,7 @@ class WishControllerTest {
     void showAddWish() throws Exception {
         //arrange
         int wishlistID = 1;
-        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), "julegaver", "juleønsker 2026");
         when(wishService.getWishlistById(wishlistID)).thenReturn(wishlist);
 
         //act & assert
@@ -185,7 +185,7 @@ class WishControllerTest {
     void deleteWishList() throws Exception {
         //arrange
         int wishlistID = 1;
-        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), "julegaver", "juleønsker 2026");
         when(wishService.getWishlistById(wishlistID)).thenReturn(wishlist);
 
         //act & assert
@@ -194,7 +194,7 @@ class WishControllerTest {
                 .andExpect(redirectedUrl("/wishlists"));
 
         verify(wishService, times(1)).getWishlistById(wishlistID);
-        verify(wishService, times(1)).deleteWishListById(wishlist);
+        verify(wishService, times(1)).deleteWishlistById(wishlist);
     }
 
 
@@ -227,13 +227,12 @@ class WishControllerTest {
     void createWishlist() throws Exception {
         //arrange
         int wishlistID = 1;
-        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), "julegaver", "juleønsker 2026");
         when(wishService.addWishlist(any(Wishlist.class))).thenReturn(wishlistID);
 
         //act & assert
         mockMvc.perform(post("/wishlists/create")
                         .param("wishlistID", "0")
-                        .param("price", String.valueOf(wishlist.getPrice()))
                         .param("wishlistDesc", wishlist.getWishlistDesc())
                         .param("wishlistName", wishlist.getWishlistName()))
                 .andExpect(status().is3xxRedirection())
@@ -246,7 +245,7 @@ class WishControllerTest {
     void editWishlistform() throws Exception{
         //arrange
         int wishlistID = 1;
-        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), "julegaver", "juleønsker 2026");
         when(wishService.getWishlistById(wishlistID)).thenReturn(wishlist);
 
         //act & assert
@@ -263,12 +262,11 @@ class WishControllerTest {
         void updateWishlist() throws Exception {
             //arrange
             int wishlistID = 1;
-            Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+            Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), "julegaver", "juleønsker 2026");
 
             //act & assert
             mockMvc.perform(post("/wishlists/edit")
                             .param("wishlistID", String.valueOf(wishlist.getWishlistID()))
-                            .param("price", String.valueOf(wishlist.getPrice()))
                             .param("wishlistDesc", wishlist.getWishlistDesc())
                             .param("wishlistName", wishlist.getWishlistName()))
                     .andExpect(status().is3xxRedirection())
