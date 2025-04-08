@@ -26,14 +26,10 @@
     <button th:onclick="'window.location.href=\'/wishlists/' + ${wishlist.wishlistID} + '/add-wish\''">Tilføj ønske</button>
     <form th:action="@{/wishlists/delete/{id}(id=${wishlist.wishlistID})}" method="post">
     <button type="submit" onclick="return confirm('Er du sikker på du vil slette ønskelisten?')"> <!-- return confirm åbner et pop-up window
-    som gør at man skal confirme at man vil slette en ønskeliste -->
-        Slet
-    </button>
+    som gør at man skal confirme at man vil slette en ønskeliste -->Slet</button>
     </form>
+    <button onclick="window.location.href='/wishlists'">Tilbage til ønskelister</button>
 </div>
-<h3>
-<a th:href="@{'/wishlists'}">Tilbage til Ønskelister</a>
-</h3>
 </div>
 <footer th:replace="fragtments/footer :: site-footer"></footer>
 </body>

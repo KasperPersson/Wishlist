@@ -88,6 +88,13 @@ public class WishController {
         return "redirect:/wishlists";
     }
 
+    @PostMapping("/wishes/delete/{id}")
+    public String deleteWish(@PathVariable int id) {
+        Wish wish = wishService.getSpecificWishById(id);
+        wishService.deleteWishById(id);
+        return "redirect:/wishlists/" + wish.getWishlistId();
+    }
+
     //viser create formen til tilføjelse af ny ønskeliste
     @GetMapping("/wishlists/create")
     public String createWishlistForm(Model model) {
