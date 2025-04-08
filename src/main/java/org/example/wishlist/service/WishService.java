@@ -34,6 +34,8 @@ public class WishService {
         wishlistRepository.updateWishlist(wishlist);
     }
 
+
+
     public boolean login(String uid, String pw) {
         User user = userRepository.getUser(uid);
         if (user != null) {
