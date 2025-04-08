@@ -86,6 +86,21 @@ public class WishController {
        return "redirect:/wishlists/" + newID;
     }
 
+    @GetMapping("/wishlists/{id}/edit")
+    public String editWishlistform(@PathVariable int id, Model model) {
+        Wishlist wishlist = wishService.getWishlistById(id);
+        model.addAttribute("wishlist", wishlist);
+
+        return "edit-wishlist";
+    }
+
+
+    @PostMapping("/wishlists/edit")
+    public String updateWishlist(@ModelAttribute("wishlist") Wishlist wishlist) {
+        wishService.updateWishlist(wishlist);
+        return "redirect:/wishlists/" + wishlist.getWishlistID();
+    }
+
 
 
 }
