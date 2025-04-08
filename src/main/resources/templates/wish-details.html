@@ -12,10 +12,14 @@
     <p>Pris: <span th:text="${wish.price}"></span></p>
     <a th:href="${wish.link}" target="_blank">Link</a>
 </ul>
-
-<a th:href="@{/wishes/{id}/edit(id=${wish.wishID})}">Rediger ønsket</a>
-<a th:href="@{'/update'}">Slet ønsket</a>
-<a th:href="@{'/wishlists'}">Tilbage til Ønskelister</a>
+<form th:action="@{/wishes/{id}/edit(id=${wish.wishID})}" method="get">
+    <button type="submit">Rediger ønsket</button>
+</form>
+<form th:action="@{/wishes/delete/{id}(id=${wish.wishID})}" method="post">
+    <button type="submit" onclick="return confirm('Er du sikker på du vil slette ønsket?')"> <!-- return confirm åbner et pop-up window
+    som gør at man skal confirme at man vil slette en ønskeliste -->Slet ønske</button>
+</form>
+<button onclick="window.location.href='/wishlists'">Tilbage til ønskelister</button>
 
 
 </body>

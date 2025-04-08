@@ -34,6 +34,8 @@ public class WishService {
         wishlistRepository.updateWishlist(wishlist);
     }
 
+
+
     public boolean login(String uid, String pw) {
         User user = userRepository.getUser(uid);
         if (user != null) {
@@ -57,6 +59,10 @@ public class WishService {
     }
     public void deleteWishListById(Wishlist wishlist) {
         wishlistRepository.deleteWishlist(wishlist);
+    }
+
+    public void deleteWishById(int id) {
+        wishRepository.deleteWish(id);
     }
 
     public void save(Wishlist wishlist) {

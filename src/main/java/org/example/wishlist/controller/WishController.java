@@ -88,6 +88,13 @@ public class WishController {
         return "redirect:/wishlists";
     }
 
+    @PostMapping("/wishes/delete/{id}")
+    public String deleteWish(@PathVariable int id) {
+        Wish wish = wishService.getSpecificWishById(id);
+        wishService.deleteWishById(id);
+        return "redirect:/wishlists/" + wish.getWishlistId();
+    }
+
     //viser create formen til tilføjelse af ny ønskeliste
     @GetMapping("/wishlists/create")
     public String createWishlistForm(Model model) {
@@ -100,6 +107,24 @@ public class WishController {
     public String createWishlist(@ModelAttribute Wishlist wishlist){
         int newID = wishService.addWishlist(wishlist);
        return "redirect:/wishlists/" + newID;
+    }
+
+    @GetMapping("/wishlists/{id}/edit")
+    public String editWishlistform(@PathVariable int id, Model model) {
+        Wishlist wishlist = wishService.getWishlistById(id);
+        model.addAttribute("wishlist", wishlist);
+
+        return "edit-wishlist";
+    }
+
+
+
+
+
+    @PostMapping("/wishlists/edit")
+    public String updateWishlist(@ModelAttribute("wishlist") Wishlist wishlist) {
+        wishService.updateWishlist(wishlist);
+        return "redirect:/wishlists/" + wishlist.getWishlistID();
     }
 
 
