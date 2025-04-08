@@ -23,6 +23,9 @@
         </li>
     </ul>
     <div>
+        <form th:action="@{/wishlists/{id}/add-wish(id=${wishlist.wishlistID})}">
+        <button type="submit">Tilføj ønske</button>
+        </form>
         <form th:action="@{/wishlists/delete/{id}(id=${wishlist.wishlistID})}" method="post">
             <button type="submit" onclick="return confirm('Er du sikker på du vil slette ønskelisten?')"> <!-- return confirm åbner et pop-up window
     som gør at man skal confirme at man vil slette en ønskeliste -->
