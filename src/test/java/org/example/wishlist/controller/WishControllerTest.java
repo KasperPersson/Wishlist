@@ -119,11 +119,11 @@ class WishControllerTest {
                 .andExpect(model().attribute("wish", wish));
 
         verify(wishService, times(1)).getSpecificWishById(wishID);
-
     }
 
     @Test
     void updateWish() {
+        
 
 
     }
