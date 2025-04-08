@@ -39,8 +39,8 @@ public class WishRepository {
     }
 
     public void addWish(Wish wish) {
-        String sql = "INSERT INTO wish(name, description, price, link) VALUES (?,?,?,?)";
-        jdbcTemplate.update(sql, wish.getWishName(), wish.getDescription(), wish.getPrice(), wish.getLink());
+        String sql = "INSERT INTO wish(name, description, pris, link, wishlist_id) VALUES (?,?,?,?,?)";
+        jdbcTemplate.update(sql, wish.getWishName(), wish.getDescription(), wish.getPrice(), wish.getLink(), wish.getWishlistId());
     }
 
     public void addWish(Wish wish, int wishlistId) {

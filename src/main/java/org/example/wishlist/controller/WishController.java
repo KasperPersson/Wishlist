@@ -65,6 +65,22 @@ public class WishController {
         return "redirect:/wishes/" + wish.getWishID();
     }
 
+    @GetMapping("/wishlists/{id}/add-wish")
+    public String showAddWish(@PathVariable("id") int id, Model model){
+        Wishlist wishlist = wishService.getWishlistById(id);
+        model.addAttribute("wishlist", wishlist);
+    model.addAttribute("wish", new Wish());
+    return "add-wish";
+    }
+
+    @PostMapping("/wishlists/{id}/adding")
+    public String addingWish(@PathVariable("id") int wishlistId, @ModelAttribute Wish wish){
+        wish.setWishlistId(wishlistId);
+        wishService.addWish(wish);
+
+        return "redirect:/wishlists/" + wishlistId;
+    }
+
     @PostMapping("/wishlists/delete/{id}")
     public String deleteWishList(@PathVariable int id) {
         Wishlist wishlist = wishService.getWishlistById(id);
