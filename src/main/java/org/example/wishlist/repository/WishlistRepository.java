@@ -61,11 +61,16 @@ public class WishlistRepository implements IWishlist<Wishlist> {
     }
 
 
-    public void updateWishlist(Wishlist newWishlist) { //String id i stedet for name?
-        String sql = "UPDATE wishlist SET wish = ?, wishlist = ?, price = ?, wishlistDesc = ?, wishlistName = ? WHERE id = ?";
-        jdbcTemplate.update(sql, newWishlist.getWishlist(), newWishlist.getPrice(), newWishlist.getWishlistDesc(),
-                newWishlist.getWishlistName()); //Skal der ikke være et ID her?? //Hvorfor er der et wish i wishlist og en liste af wishes?
+//    public void updateWishlist(Wishlist newWishlist) { //String id i stedet for name?
+//        String sql = "UPDATE wishlist SET wishlist = ?, price = ?, wishlistDesc = ?, wishlistName = ? WHERE id = ?";
+//        jdbcTemplate.update(sql, newWishlist.getWishlist(), newWishlist.getPrice(), newWishlist.getWishlistDesc(),
+//                newWishlist.getWishlistName()); //Skal der ikke være et ID her?? //Hvorfor er der et wish i wishlist og en liste af wishes?
+//
+//    }
 
+    public void updateWishlist(Wishlist wishlist) {
+        String sql = "UPDATE wishlist SET NAME = ?, DESCRIPTION = ? WHERE WISHLIST_ID = ?";
+        jdbcTemplate.update(sql, wishlist.getWishlistName(), wishlist.getWishlistDesc(), wishlist.getWishlistID());
     }
 
     public Wishlist getWishlistById(int wishlistId) {

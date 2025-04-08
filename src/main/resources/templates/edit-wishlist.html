@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/general.css}">
+<head>
+    <title>Rediger Ønske</title>
+</head>
+<header th:replace="fragtments/header :: site-header"></header>
+<body>
+<h1>Rediger Ønske</h1>
+
+<form th:action="@{/wishlists/edit}" th:object="${wishlist}" method="post" class="form-box">
+    <input type="hidden" th:field="*{wishlistID}"/>
+
+    <label for="Name"> Navn:</label>
+    <input type="text" id="Name" th:field="*{wishlistName}"/><br/>
+
+
+    <label for="description">Beskrivelse:</label>
+    <input type="text" id="description" th:field="*{wishlistDesc}"/><br/>
+
+    <button type="submit">Gem ændringer</button>
+</form>
+
+<footer th:replace="fragtments/footer :: site-footer"></footer>
+</body>
+</html>
