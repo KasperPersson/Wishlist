@@ -6,29 +6,28 @@ import org.example.wishlist.service.WishService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ExtendWith(MockitoExtension.class)
+@WebMvcTest(WishController.class)
 class WishControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private WishService wishService;
 
     @InjectMocks
@@ -36,7 +35,8 @@ class WishControllerTest {
 
     @BeforeEach
     void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(wishController).build();
+        // initialiserer wishService og wishController, så mocks er klar til brug før test kører
+        MockitoAnnotations.openMocks(this);
     }
 
     @AfterEach
@@ -122,28 +122,161 @@ class WishControllerTest {
     }
 
     @Test
-    void updateWish() {
-        
+    void updateWish() throws Exception {
+        // Arrange
+        Wish wish = new Wish("Playstation 5", 1, "Konsol med 1 controller", 4999, "www.ps5.dk", 2);
 
+        // Act & Assert
+        mockMvc.perform(post("/update")
+                        .param("wishName", wish.getWishName())
+                        .param("wishID", String.valueOf(wish.getWishID()))
+                        .param("description", wish.getDescription())
+                        .param("price", String.valueOf(wish.getPrice()))
+                        .param("link", wish.getLink())
+                        .param("wishlistId", String.valueOf(wish.getWishlistId()))
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/wishes/" + wish.getWishID()));
+
+        verify(wishService, times(1)).updateWish(any(Wish.class));
+    }
+
+
+    @Test
+    void showAddWish() throws Exception {
+        //arrange
+        int wishlistID = 1;
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        when(wishService.getWishlistById(wishlistID)).thenReturn(wishlist);
+
+        //act & assert
+        mockMvc.perform(get("/wishlists/{id}/add-wish", wishlistID))
+                .andExpect(status().isOk())
+                .andExpect(view().name("add-wish"))
+                .andExpect(model().attribute("wishlist", wishlist))
+                .andExpect(model().attributeExists("wish"));
+
+        verify(wishService, times(1)).getWishlistById(wishlistID);
+    }
+
+    @Test
+    void addingWish() throws Exception {
+        //Arrange
+        int wishlistID = 1;
+        Wish wish = new Wish("Playstation 5", 1, "Konsol med 1 controller", 4999, "www.ps5.dk", wishlistID);
+
+        // Act & Assert
+        mockMvc.perform(post("/wishlists/{id}/adding", wishlistID)
+                        .param("wishName", wish.getWishName())
+                        .param("wishID", String.valueOf(wish.getWishID()))
+                        .param("description", wish.getDescription())
+                        .param("price", String.valueOf(wish.getPrice()))
+                        .param("link", wish.getLink())
+                        .param("wishlistId", String.valueOf(wish.getWishlistId()))
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/wishlists/" + wishlistID));
+
+        verify(wishService, times(1)).addWish(any(Wish.class));
+    }
+
+
+    @Test
+    void deleteWishList() throws Exception {
+        //arrange
+        int wishlistID = 1;
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        when(wishService.getWishlistById(wishlistID)).thenReturn(wishlist);
+
+        //act & assert
+        mockMvc.perform(post("/wishlists/delete/{id}", wishlistID))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/wishlists"));
+
+        verify(wishService, times(1)).getWishlistById(wishlistID);
+        verify(wishService, times(1)).deleteWishListById(wishlist);
+    }
+
+
+    @Test
+    void deleteWish() throws Exception {
+        //arrange
+        int wishID = 1;
+        Wish wish = new Wish("Playstation 5", wishID, "Konsol med 1 controller", 4999, "www.ps5.dk", 1);
+        when(wishService.getSpecificWishById(wishID)).thenReturn(wish);
+
+        //act & assert
+        mockMvc.perform(post("/wishes/delete/{id}", wishID))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/wishlists/" + wishID));
+
+        verify(wishService, times(1)).getSpecificWishById(wishID);
+        verify(wishService, times(1)).deleteWishById(wishID);
 
     }
 
     @Test
-    void deleteWishList() {
-
+    void createWishlistForm() throws Exception {
+        mockMvc.perform(get("/wishlists/create"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("wishlists-create"))
+                .andExpect(model().attributeExists("wishlist"));
     }
 
     @Test
-    void showAddWish() {
+    void createWishlist() throws Exception {
+        //arrange
+        int wishlistID = 1;
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        when(wishService.addWishlist(any(Wishlist.class))).thenReturn(wishlistID);
 
+        //act & assert
+        mockMvc.perform(post("/wishlists/create")
+                        .param("wishlistID", "0")
+                        .param("price", String.valueOf(wishlist.getPrice()))
+                        .param("wishlistDesc", wishlist.getWishlistDesc())
+                        .param("wishlistName", wishlist.getWishlistName()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/wishlists/" + wishlistID));
+
+        verify(wishService, times(1)).addWishlist(any(Wishlist.class));
     }
 
     @Test
-    void addingWish(){
+    void editWishlistform() throws Exception{
+        //arrange
+        int wishlistID = 1;
+        Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
+        when(wishService.getWishlistById(wishlistID)).thenReturn(wishlist);
+
+        //act & assert
+        mockMvc.perform(get("/wishlists/{id}/edit",wishlistID))
+                .andExpect(status().isOk())
+                .andExpect(view().name("edit-wishlist"))
+                .andExpect(model().attribute("wishlist", wishlist));
+
+        verify(wishService,times(1)).getWishlistById(wishlistID);
 
     }
 
-  @Test
+        @Test
+        void updateWishlist() throws Exception {
+            //arrange
+            int wishlistID = 1;
+            Wishlist wishlist = new Wishlist(wishlistID, new ArrayList<>(), 1299, "julegaver", "juleønsker 2026");
 
+            //act & assert
+            mockMvc.perform(post("/wishlists/edit")
+                            .param("wishlistID", String.valueOf(wishlist.getWishlistID()))
+                            .param("price", String.valueOf(wishlist.getPrice()))
+                            .param("wishlistDesc", wishlist.getWishlistDesc())
+                            .param("wishlistName", wishlist.getWishlistName()))
+                    .andExpect(status().is3xxRedirection())
+                    .andExpect(redirectedUrl("/wishlists/" + wishlistID));
+
+            verify(wishService,times(1)).updateWishlist(any(Wishlist.class));
+        }
 
 }
+
+
