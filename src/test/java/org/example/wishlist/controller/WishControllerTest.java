@@ -54,7 +54,7 @@ class WishControllerTest {
         Wishlist wishlist2 = new Wishlist(2, new ArrayList<>(), 700, "julegave ønsker sidste år", "Jul 2024");
         List<Wishlist> mockLists = List.of(wishlist1, wishlist2);
 
-        when(wishService.getAllWishLists()).thenReturn(mockLists);
+        when(wishService.getAllWishlists()).thenReturn(mockLists);
 
         //act & assert
         mockMvc.perform(get("/wishlists")) //laver get request til controller
@@ -62,7 +62,7 @@ class WishControllerTest {
                 .andExpect(view().name("wishlist"))
                 .andExpect(model().attribute("wishLists", mockLists));
 
-        verify(wishService, times(1)).getAllWishLists(); //sikre metoden kaldes én gang, ikke nul eller flere gange
+        verify(wishService, times(1)).getAllWishlists(); //sikre metoden kaldes én gang, ikke nul eller flere gange
     }
 
     @Test

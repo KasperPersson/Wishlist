@@ -1,6 +1,5 @@
 package org.example.wishlist.controller;
 
-import org.example.wishlist.model.User;
 import org.example.wishlist.model.Wish;
 import org.example.wishlist.model.Wishlist;
 import org.example.wishlist.service.WishService;
@@ -25,7 +24,7 @@ public class WishController {
 
     @GetMapping("/wishlists")
     public String getAllWishLists(Model model) {
-        List<Wishlist> wishLists = wishService.getAllWishLists();
+        List<Wishlist> wishLists = wishService.getAllWishlists();
         model.addAttribute("wishLists", wishLists);
         return "wishlist";
     }
@@ -84,7 +83,7 @@ public class WishController {
     @PostMapping("/wishlists/delete/{id}")
     public String deleteWishList(@PathVariable int id) {
         Wishlist wishlist = wishService.getWishlistById(id);
-        wishService.deleteWishListById(wishlist);
+        wishService.deleteWishlistById(wishlist);
         return "redirect:/wishlists";
     }
 

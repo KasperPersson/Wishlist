@@ -23,10 +23,6 @@ public class WishRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public List<Wish> getAllWishes() {
-        String sql = "SELECT name, description, price, link FROM wish";
-        return jdbcTemplate.query(sql, new WishRowMapper());
-    }
 
     public List<Wish> getAllWishesById(int wishlistId) {
         String sql = "SELECT wish_id, wishlist_id, name, description, pris, link FROM wish WHERE wishlist_id = ?";
@@ -42,12 +38,6 @@ public class WishRepository {
         String sql = "INSERT INTO wish(name, description, pris, link, wishlist_id) VALUES (?,?,?,?,?)";
         jdbcTemplate.update(sql, wish.getWishName(), wish.getDescription(), wish.getPrice(), wish.getLink(), wish.getWishlistId());
     }
-
-    public void addWish(Wish wish, int wishlistId) {
-        String sql = "INSERT INTO WISH (WISHLIST_ID, NAME, DESCRIPTION, LINK, PRIS) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, wishlistId, wish.getWishName(), wish.getDescription(), wish.getLink(), wish.getPrice());
-    } //TODO SKAL RYKKES TIL WISHLIST WISHLIST
-
 
 
     public void deleteWish(int id) {

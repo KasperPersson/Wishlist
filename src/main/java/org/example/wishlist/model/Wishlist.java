@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Wishlist {
     private int wishlistID;
     private ArrayList<Wish> wishlist;
-    private int price;
     private String wishlistDesc;
     private String wishlistName;
 
@@ -13,10 +12,9 @@ public class Wishlist {
 
     }
 
-    public Wishlist(int wishlistID, ArrayList<Wish> wishlist, int price, String wishlistDesc, String name) {
+    public Wishlist(int wishlistID, ArrayList<Wish> wishlist, String wishlistDesc, String name) {
         this.wishlistID = wishlistID;
         this.wishlist = wishlist;
-        this.price = price;
         this.wishlistDesc = wishlistDesc;
         this.wishlistName = name;
     }
@@ -31,13 +29,6 @@ public class Wishlist {
         this.wishlist = wishlist;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     public String getWishlistName() {
         return wishlistName;
