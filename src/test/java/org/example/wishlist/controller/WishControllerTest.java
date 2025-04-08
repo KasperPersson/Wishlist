@@ -130,5 +130,20 @@ class WishControllerTest {
 
     @Test
     void deleteWishList() {
+
     }
+
+    @Test
+    void showAddWish() {
+
+    }
+
+    @Test
+    void addingWish(){
+
+    }
+
+  @Test
+
+
 }
