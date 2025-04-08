@@ -22,7 +22,7 @@ public class WishService {
         this.userRepository = userRepository;
     }
 
-    public List<Wishlist> getAllWishLists() {
+    public List<Wishlist> getAllWishlists() {
         return wishlistRepository.getAllWishList();
     }
 
@@ -33,7 +33,6 @@ public class WishService {
     public void updateWishlist(Wishlist wishlist) {
         wishlistRepository.updateWishlist(wishlist);
     }
-
 
 
     public boolean login(String uid, String pw) {
@@ -57,7 +56,7 @@ public class WishService {
     public Wish getSpecificWishById(int id) {
         return wishRepository.getSpecificWishById(id);
     }
-    public void deleteWishListById(Wishlist wishlist) {
+    public void deleteWishlistById(Wishlist wishlist) {
         wishlistRepository.deleteWishlist(wishlist);
     }
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -31,7 +30,7 @@ public class WishlistRepository implements IWishlist<Wishlist> {
 
     public List<Wishlist> getAllWishList() {
         String sql = "SELECT WISHLIST_ID, NAME, DESCRIPTION FROM wishlist";
-        return jdbcTemplate.query(sql, new WishListRowMapper());
+        return jdbcTemplate.query(sql, new WishlistRowMapper());
     }
 
 
@@ -61,12 +60,6 @@ public class WishlistRepository implements IWishlist<Wishlist> {
     }
 
 
-//    public void updateWishlist(Wishlist newWishlist) { //String id i stedet for name?
-//        String sql = "UPDATE wishlist SET wishlist = ?, price = ?, wishlistDesc = ?, wishlistName = ? WHERE id = ?";
-//        jdbcTemplate.update(sql, newWishlist.getWishlist(), newWishlist.getPrice(), newWishlist.getWishlistDesc(),
-//                newWishlist.getWishlistName()); //Skal der ikke være et ID her?? //Hvorfor er der et wish i wishlist og en liste af wishes?
-//
-//    }
 
     public void updateWishlist(Wishlist wishlist) {
         String sql = "UPDATE wishlist SET NAME = ?, DESCRIPTION = ? WHERE WISHLIST_ID = ?";
@@ -75,7 +68,7 @@ public class WishlistRepository implements IWishlist<Wishlist> {
 
     public Wishlist getWishlistById(int wishlistId) {
         String sql = "SELECT wishlist_id, user_id, name, description FROM wishlist WHERE wishlist_id = ?";
-        return jdbcTemplate.queryForObject(sql, new WishListRowMapper(), wishlistId);
+        return jdbcTemplate.queryForObject(sql, new WishlistRowMapper(), wishlistId);
     }
 
     public void save(Wishlist wishlist) {
@@ -91,7 +84,7 @@ public class WishlistRepository implements IWishlist<Wishlist> {
     @Override
     public List<Wishlist> readAll() {
         String sql = "SELECT WISHLIST_ID, NAME, DESCRIPTION FROM wishlist";
-        return jdbcTemplate.query(sql, new WishListRowMapper());
+        return jdbcTemplate.query(sql, new WishlistRowMapper());
     }
 
     @Override

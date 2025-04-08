@@ -3,19 +3,20 @@
 <head>
     <title>Wishlist Details</title>
     <link rel="stylesheet" th:href="@{/css/general.css}">
-    <link rel="stylesheet" th:href="@{/css/wishlist.css}">
+    <link rel="stylesheet" th:href="@{/css/wishlist-details.css}">
 </head>
 <header th:replace="fragtments/header :: site-header"></header>
 <body>
 <h1 th:text="${wishlist.wishlistName}"></h1>
-<p th:text="${wishlist.wishlistDesc}">
+<p class="sub-title" th:text="${wishlist.wishlistDesc}">
 
-<h2>Ønsker</h2>
-<div>
-    <ul>
-        <li th:each="wish : ${wishes}">
+
+<div class="sub-body">
+    <ul class="wish-container">
+        <li class="wish-box" th:each="wish : ${wishes}">
             <a th:href="@{/wishes/{id}(id=${wish.wishID})}">
-                <h3 th:text="${wish.wishName}"></h3></a>
+                <h3 th:text="${wish.wishName}"></h3>
+            </a>
             <p th:text="${wish.description}"></p>
             <p>Pris: <span th:text="${wish.price}"></span></p>
             <a th:href="${wish.link}" target="_blank">Link</a> <!-- Betyder den åbner i ny fane og ikke samme fane -->
