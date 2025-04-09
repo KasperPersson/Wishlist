@@ -44,5 +44,8 @@ public class Wishlist {
         return wishlistID;
     }
 
+    public void setWishlistID(int wishlistID){
+        this.wishlistID = wishlistID;
+    }
 
 }
