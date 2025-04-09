@@ -4,11 +4,14 @@ body {
     color: #333;
 }
 
-.sub-body {
-    margin: 20px;
+.sub-body{
+    margin: 10px;
+    grid-area: main;
+    align-content: center;
 }
 
 .headline {
+    grid-area: nav;
     text-align: center;
     margin: 40px;
 }
@@ -25,7 +28,6 @@ h1, h2 {
     text-align: center;
     color: #444;
 }
-
 
 p {
     margin: 5px 0;
@@ -67,10 +69,7 @@ ul {
 }
 
 /* Knapper og links */
-button,
-a[href^="/wishlists"],
-a[href^="/wishlists/{id}/edit"] {
-    display: inline-block;
+button{
     background-color: #1a73e8;
     color: white;
     padding: 10px 15px;
@@ -81,6 +80,12 @@ a[href^="/wishlists/{id}/edit"] {
     font-size: 14px;
     cursor: pointer;
 }
+
+.button-place {
+    display: flex;
+    justify-self: center;
+}
+
 
 button:hover,
 a[href^="/wishlists"]:hover {
