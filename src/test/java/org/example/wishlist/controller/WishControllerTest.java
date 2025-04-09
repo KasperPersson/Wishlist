@@ -30,9 +30,6 @@ class WishControllerTest {
     @MockBean
     private WishService wishService;
 
-    @InjectMocks
-    private WishController wishController;
-
     @BeforeEach
     void setup() {
         // initialiserer wishService og wishController, så mocks er klar til brug før test kører
