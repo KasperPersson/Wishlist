@@ -6,26 +6,30 @@
     <link rel="stylesheet" th:href="@{/css/wishlist-details.css}">
 </head>
 <header th:replace="fragtments/header :: site-header"></header>
+
 <body>
-<h1 th:text="${wishlist.wishlistName}"></h1>
-<p class="sub-title" th:text="${wishlist.wishlistDesc}">
-
-
+<div class="headline">
+    <h1 th:text="${wishlist.wishlistName}"></h1>
+    <p th:text="${wishlist.wishlistDesc}">
+</div>
 <div class="sub-body">
-    <ul class="wish-container">
-        <li class="wish-box" th:each="wish : ${wishes}">
-            <a th:href="@{/wishes/{id}(id=${wish.wishID})}">
-                <h3 th:text="${wish.wishName}"></h3>
-            </a>
-            <p th:text="${wish.description}"></p>
-            <p>Pris: <span th:text="${wish.price}"></span></p>
-            <a th:href="${wish.link}" target="_blank">Link</a> <!-- Betyder den åbner i ny fane og ikke samme fane -->
-            <p>ID: <span th:text="${wish.wishID}"></span></p> <!-- Test kode til at se om den henter korrekt id -->
-        </li>
-    </ul>
+    <div class="wish-wrapper">
+        <ul class="wish-container">
+            <li class="wish-box" th:each="wish : ${wishes}">
+                <a th:href="@{/wishes/{id}(id=${wish.wishID})}">
+                    <h3 th:text="${wish.wishName}"></h3>
+                </a>
+                <p th:text="${wish.description}"></p>
+                <p>Pris: <span th:text="${wish.price}"></span></p>
+                <a th:href="${wish.link}" target="_blank">Link</a>
+                <!-- Betyder den åbner i ny fane og ikke samme fane -->
+                <p>ID: <span th:text="${wish.wishID}"></span></p> <!-- Test kode til at se om den henter korrekt id -->
+            </li>
+        </ul>
+    </div>
     <div>
         <form th:action="@{/wishlists/{id}/add-wish(id=${wishlist.wishlistID})}">
-        <button type="submit">Tilføj ønske</button>
+            <button type="submit">Tilføj ønske</button>
         </form>
         <form th:action="@{/wishlists/delete/{id}(id=${wishlist.wishlistID})}" method="post">
             <button type="submit" onclick="return confirm('Er du sikker på du vil slette ønskelisten?')"> <!-- return confirm åbner et pop-up window

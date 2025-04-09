@@ -1,59 +1,101 @@
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fdfdfd;
-    padding: 20px;
-    color: #333;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
 }
 
-h1 {
-    color: #4a4a4a;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* Ønske-boksen */
 .wish-box {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    max-width: 1000px;
+    margin: 100px auto; /* Centrerer og giver afstand fra top */
+    padding: 100px;
+    background-color: #7cb5e8;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Tekst og links */
-.wish-box p {
-    margin: 10px 0;
+.wish-box h1 {
+    margin-bottom: 20px;
 }
 
-.wish-box a {
-    color: #1a73e8;
-    text-decoration: none;
-}
-
-.wish-box a:hover {
-    text-decoration: underline;
-}
-
-/* Knapper */
-button {
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 15px;
-    margin: 10px 5px 0 0;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-button:hover {
-    background-color: #155ab6;
-}
-
-/* Centreret footer-knap */
-.back-button {
+.wish-box label {
     display: block;
-    margin: 40px auto 0;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.wish-box input[type="text"],
+.wish-box input[type="number"],
+.wish-box textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.wish-box textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.wish-box button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #0059b3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.wish-box button:hover {
+    background-color: #004080;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* afstand mellem knapper */
+    margin-top: 200px;
+}
+
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #003366; /* mørkeblå */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-group button:hover {
+    background-color: #001f4d;
+}
+
+/* Ens styling til alle knapper */
+.standard-button,
+.button-group button {
+    padding: 10px 20px;
+    height: 42px; /* Sørger for ens højde */
+    border: none;
+    border-radius: 10px;
+    background-color: #003366; /* mørkeblå */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.standard-button:hover,
+.button-group button:hover {
+    background-color: #001f4d;
 }
