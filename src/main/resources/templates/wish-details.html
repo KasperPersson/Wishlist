@@ -19,6 +19,11 @@
     <p><a th:href="${wish.link}" target="_blank">Link</a></p>
 </div>
 
+<div class="image-button-box">
+<div class="image-box">
+    <img src="/images/gavegut-rækker-tunge.png" height="300" width="300">
+</div>
+
 <div class="button-group">
     <form th:action="@{/wishes/{id}/edit(id=${wish.wishID})}" method="get">
         <button type="submit">Rediger ønsket</button>
@@ -29,6 +34,7 @@
     </form>
 
     <button class="standard-button" onclick="window.location.href='/wishlists'">Tilbage til ønskelister</button>
+</div>
 </div>
 
 <footer th:replace="fragtments/footer :: site-footer"></footer>
