@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/general.css}">
+<link rel="stylesheet" th:href="@{/css/wishlists-create.css}">
 <head>
     <title>Opret Ønskeliste</title>
 </head>
 <header th:replace="fragtments/header :: site-header"></header>
 <body>
+<div class="wishlist-form">
 <h1>Opret en ny ønskeliste</h1>
 
 <form th:action="@{/wishlists/create}" th:object="${wishlist}" method="post" class="form-box">
@@ -19,7 +21,8 @@
 </form>
 
 <img src="/images/gavegut-opret-liste.png" height="400" width="400">
-
+</div>
 <footer th:replace="fragtments/footer :: site-footer"></footer>
+
 </body>
 </html>

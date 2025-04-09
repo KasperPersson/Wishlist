@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/general.css}">
+<link rel="stylesheet" th:href="@{/css/edit-wish.css}">
 <head>
     <meta charset="UTF-8">
     <title>Redigering af ønske</title>
 </head>
+<header th:replace="fragtments/header :: site-header"></header>
 <body>
+<div class="edit-box">
 <h1>Redigering af ønske</h1>
 
 <form th:action="@{/update}" th:method="post" th:object="${wish}">
@@ -24,5 +28,7 @@
 <button type="submit">Gem</button>
 
 </form>
+</div>
+<footer th:replace="fragtments/footer :: site-footer"></footer>
 </body>
 </html>

@@ -13,17 +13,20 @@
     <h3>
         <button onclick="window.location.href='/wishlists/create'">Opret ønskeliste</button> <!-- onclick="window.location.href='/wishlist/create'"
         sørger for, at klik på knappen fører brugeren til /wishlist/create-siden -->
-        </h3>
+    </h3>
+    <div class="container">
 
-    <div class="wishlists">
-        <div th:each="wishlist : ${wishLists}" class="wishlist-item">
-            <a th:href="@{'/wishlists/' + ${wishlist.wishlistID}}">
-                <h2 th:text="${wishlist.wishlistName}"></h2>
-            </a>
-            <p th:text="${wishlist.wishlistDesc}"></p>
+        <div class="wishlists">
+            <div th:each="wishlist : ${wishLists}" class="wishlist-item">
+                <a th:href="@{'/wishlists/' + ${wishlist.wishlistID}}">
+                    <h2 th:text="${wishlist.wishlistName}"></h2>
+                </a>
+                <p th:text="${wishlist.wishlistDesc}"></p>
+            </div>
         </div>
     </div>
-    </div>
+</div>
+
 
 <img src="/images/solbrille-gavegut.png" height="500" width="500">
 

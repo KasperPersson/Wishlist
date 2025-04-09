@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/wishes.css}">
+
 <head>
+    <link rel="stylesheet" th:href="@{/css/wishes.css}">
+    <link rel="stylesheet" th:href="@{/css/general.css}">
     <meta charset="UTF-8">
     <title>wish details</title>
 </head>
+
+<header th:replace="fragtments/header :: site-header"></header>
 <body>
-<h1 th:text="${wish.wishName}"></h1>
+
 <div class="wish-box">
-    <ul>
-        <p th:text="${wish.description}"></p>
-        <p>Pris: <span th:text="${wish.price}"></span></p>
-       <p> <a th:href="${wish.link}" target="_blank">Link</a></p>
-    </ul>
+    <h1 th:text="${wish.wishName}"></h1>
+
+    <p th:text="${wish.description}"></p>
+    <p>Pris: <span th:text="${wish.price}"></span></p>
+    <p><a th:href="${wish.link}" target="_blank">Link</a></p>
+</div>
+
+<div class="button-group">
     <form th:action="@{/wishes/{id}/edit(id=${wish.wishID})}" method="get">
         <button type="submit">Rediger ønsket</button>
     </form>
     <form th:action="@{/wishes/delete/{id}(id=${wish.wishID})}" method="post">
         <button type="submit" onclick="return confirm('Er du sikker på du vil slette ønsket?')"> <!-- return confirm åbner et pop-up window
-    som gør at man skal confirme at man vil slette en ønskeliste -->Slet ønske
-        </button>
+    som gør at man skal confirme at man vil slette en ønskeliste -->Slet ønske</button>
     </form>
+
+    <button class="standard-button" onclick="window.location.href='/wishlists'">Tilbage til ønskelister</button>
 </div>
-<button onclick="window.location.href='/wishlists'">Tilbage til ønskelister</button>
 
-
+<footer th:replace="fragtments/footer :: site-footer"></footer>
 </body>
 </html>
