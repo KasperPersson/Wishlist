@@ -33,9 +33,6 @@ public class Wish {
         return wishID;
     }
 
-    public void setWishID(int wishID) {
-        this.wishID = wishID;
-    }
 
     public int getPrice() {
         return price;
@@ -45,17 +42,11 @@ public class Wish {
         return link;
     }
 
-    public void setWishName(String wishName) {
-        this.wishName = wishName;
-    }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     public void setLink(String link) {
         this.link = link;
