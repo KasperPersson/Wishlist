@@ -64,9 +64,6 @@ public class WishService {
         wishRepository.deleteWish(id);
     }
 
-    public void save(Wishlist wishlist) {
-        wishlistRepository.save(wishlist);
-    }
 
     public int addWishlist(Wishlist wishlist){
         return wishlistRepository.addWishlist(wishlist);

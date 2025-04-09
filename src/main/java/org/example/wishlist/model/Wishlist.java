@@ -34,23 +34,15 @@ public class Wishlist {
         return wishlistName;
     }
 
-    public void setWishlistName(String wishlistName) {
-        this.wishlistName = wishlistName;
-    }
 
     public String getWishlistDesc() {
         return wishlistDesc;
     }
 
-    public void setWishlistDesc(String wishlistDesc) {
-        this.wishlistDesc = wishlistDesc;
-    }
 
     public int getWishlistID() {
         return wishlistID;
     }
 
-    public void setWishlistID(int wishlistID) {
-        this.wishlistID = wishlistID;
-    }
+
 }
