@@ -66,4 +66,8 @@ public class Wish {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public void setWishID(int wishID) {
+        this.wishID = wishID;
+    }
 }
