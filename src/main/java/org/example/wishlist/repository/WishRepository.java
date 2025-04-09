@@ -3,23 +3,20 @@ package org.example.wishlist.repository;
 import org.example.wishlist.model.Wish;
 import org.example.wishlist.model.WishRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
 public class WishRepository {
     private final JdbcTemplate jdbcTemplate;
+    private DataSource dataSource;
 
 
-    public WishRepository() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource(
-                System.getenv("DB_URL"),
-                System.getenv("DB_USERNAME"),
-                System.getenv("DB_PASSWORD")
-        );
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+
+    public WishRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
