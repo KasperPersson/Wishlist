@@ -1,0 +1,58 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+}
+
+.edit-box {
+    max-width: 500px;
+    margin: 100px auto; /* Centrerer og giver afstand fra top */
+    padding: 30px;
+    background-color: #7cb5e8;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-box h1 {
+    margin-bottom: 20px;
+}
+
+.edit-box label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.edit-box input[type="text"],
+.edit-box input[type="number"],
+.edit-box textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.edit-box textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.edit-box button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #0059b3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.edit-box button:hover {
+    background-color: #004080;
+}
