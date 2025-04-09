@@ -44,5 +44,9 @@ public class Wishlist {
         return wishlistID;
     }
 
+    //bruges til unit test
+    public void setWishlistID(int wishlistID){
+        this.wishlistID = wishlistID;
+    }
 
 }
