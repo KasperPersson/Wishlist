@@ -59,4 +59,11 @@ public class Wish {
     public void setWishlistId(int wishlistId) {
         this.wishlistId = wishlistId;
     }
+    public void setWishName(String wishName) {
+        this.wishName = wishName;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }
