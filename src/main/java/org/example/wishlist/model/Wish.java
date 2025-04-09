@@ -67,6 +67,7 @@ public class Wish {
         this.price = price;
     }
 
+    //bruges til unit test
     public void setWishID(int wishID) {
         this.wishID = wishID;
     }
