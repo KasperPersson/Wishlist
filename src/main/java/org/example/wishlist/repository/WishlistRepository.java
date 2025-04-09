@@ -71,10 +71,6 @@ public class WishlistRepository implements IWishlist<Wishlist> {
         return jdbcTemplate.queryForObject(sql, new WishlistRowMapper(), wishlistId);
     }
 
-    public void save(Wishlist wishlist) {
-        String sql = "INSERT INTO WISHLIST (NAME, DESCRIPTION) VALUES (?, ?)";
-        jdbcTemplate.update(sql, wishlist.getWishlistName(), wishlist.getWishlistDesc());
-    }
 
     @Override
     public void create(Wishlist wishlist) {

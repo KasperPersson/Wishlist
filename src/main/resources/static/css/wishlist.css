@@ -7,6 +7,7 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Grid til wishlists – uændret */
 .wishlists {
     display: grid;
@@ -25,3 +26,13 @@
     transition: transform 0.2s;
 }
 
+button {
+    padding: 10px 20px;
+    height: 42px; /* Sørger for ens højde */
+    border: none;
+    border-radius: 10px;
+    background-color: #003366; /* mørkeblå */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
