@@ -7,7 +7,7 @@
 </head>
 <header th:replace="fragtments/header :: site-header"></header>
 
-<body>
+<body class="body-split">
 <div class="headline">
     <h1 th:text="${wishlist.wishlistName}"></h1>
     <p th:text="${wishlist.wishlistDesc}">
@@ -23,11 +23,10 @@
                 <p>Pris: <span th:text="${wish.price}"></span></p>
                 <a th:href="${wish.link}" target="_blank">Link</a>
                 <!-- Betyder den åbner i ny fane og ikke samme fane -->
-                <p>ID: <span th:text="${wish.wishID}"></span></p> <!-- Test kode til at se om den henter korrekt id -->
             </li>
         </ul>
     </div>
-    <div>
+    <div class="button-place">
         <form th:action="@{/wishlists/{id}/add-wish(id=${wishlist.wishlistID})}">
             <button type="submit">Tilføj ønske</button>
         </form>
@@ -37,13 +36,11 @@
                 Slet
             </button>
         </form>
+        <form th:action="@{/wishlists/{id}/edit(id=${wishlist.wishlistID})}">
+            <button type="submit">Rediger ønskeliste</button>
+        </form>
+        <button onclick="window.location.href='/wishlists'">Tilbage til ønskelister</button>
     </div>
-    <div>
-        <a th:href="@{/wishlists/{id}/edit(id=${wishlist.wishlistID})}">
-            Rediger Ønskeliste
-        </a>
-    </div>
-    <button onclick="window.location.href='/wishlists'">Tilbage til ønskelister</button>
 </div>
 <footer th:replace="fragtments/footer :: site-footer"></footer>
 </body>
